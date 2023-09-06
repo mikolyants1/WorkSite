@@ -1,0 +1,145 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+}
+
+header{
+width: 100%;
+height: 200px;
+background: url(./assets/fon.jpg) no-repeat;
+background-size: 100% 100%;
+}
+.title{
+  width: 100%;
+text-align: center;
+}
+h2{
+  font-size: 34px;
+}
+.inp{
+  width: 450px;
+  height: 20px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+input{
+  height: 100%;
+  width: 85%;
+}
+.ser{
+  height: 25px;
+  width: 15%;
+}
+.sel{
+  height: 30px;
+  margin:10px auto;
+  width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cat{
+  height: 100%;
+width: 50%;
+}
+.categ{
+  color: grey;
+  text-decoration: underline;
+}
+.how{
+display: flex;
+justify-content: end;
+  height: 100%;
+width: 50%;
+}
+span{
+  font-size: 18px;
+  font-weight: bolder;
+}
+select{
+  width: 140px;
+  height: 100%;
+}
+.main{
+  margin-top: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+  row-gap: 30px;
+  column-gap: 20px;
+}
+.item{
+  width: 250px;
+  min-height: 350px;
+  background-color: rgb(224, 224, 224);
+}
+.res{
+  margin-top: 10px;
+}
+.img{
+  margin:10px auto;
+  box-shadow: 4px 2px 4px 2px black;
+}
+.name{
+  font-weight: bold;
+}
+.author{
+  color: grey;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+.mainPage{
+  width: 100%;
+  height: 500px;
+  display: flex;
+  
+}
+.pageImg{
+  width: 40%;
+  height: 100%;
+  background-color: rgb(235, 234, 234);
+}
+.pageText{
+  width: 60%;
+  height: 100%;
+}
+.perImg{
+  width: 250px;
+  margin: 40px auto;
+  box-shadow: 4px 2px 4px 2px black;
+}
+.pageCat{
+  width: 90%;
+  margin: 10px auto;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.categ1{
+  align-items: start;
+}
+.pageTitle{
+  width: 90%;
+  text-align: center;
+  margin: auto;
+}
+.pageAuthor {
+  width: 90%;
+  font-size: 14px;
+  text-decoration: underline;
+  color:grey;
+  display: flex;
+  margin: auto;
+}
+.authors{
+  text-align: center;
+  width: 200px;
+}
