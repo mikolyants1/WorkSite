@@ -34,12 +34,12 @@ setValue1((prev:state):state=>({...prev,val2:value1.val1}))
 }
 return <div>
         <Head
-          change2={change2}
-          change1={change1}
-          change={change}
+          chan2={change2}
+          chan1={change1}
+          chan={change}
           press={press}
-          value1={value1.val1}
-          value={value.val1}
+          val1={value1.val1}
+          val={value.val1}
          />
         <Search
          text={ser}

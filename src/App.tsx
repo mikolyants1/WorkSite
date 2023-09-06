@@ -25,7 +25,7 @@ function Book():JSX.Element{
 const query:QueryClient=new QueryClient()
 
 function App():JSX.Element {
-  return (
+return (
     <Provider store={store}>
       <PersistGate persistor={cachedStore}>
         <QueryClientProvider client={query}>
