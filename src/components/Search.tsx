@@ -52,7 +52,7 @@ return <div>
                         <img className="img" alt=""
                          src={!imageLinks.smallThumbnail?'':imageLinks.smallThumbnail} />
                         <div className="categ">
-                          {!categories?'':categories.map((item:any,i:number):JSX.Element=>(
+                          {!categories?'':categories.map((item:string,i:number):JSX.Element=>(
                             <div key={i} className="categ1">
                                 {item}
                             </div>

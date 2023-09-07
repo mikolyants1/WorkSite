@@ -23,6 +23,7 @@ export default function Page():JSX.Element{
    ()=>Search(id),{keepPreviousData:true,refetchOnWindowFocus:false})
    if (isLoading) return <div>...</div>
    if (isError) return <div>error</div>
+   console.log(data)
    const {imageLinks,categories,authors,description,title}:any=data.volumeInfo
     return <div>
              <header>
@@ -39,7 +40,7 @@ export default function Page():JSX.Element{
                </div>
                <div className="pageText">
                  <div className="pageCat">
-                    {!categories?'':categories.map((item:any,i:number):JSX.Element=>(
+                    {!categories?'':categories.map((item:string,i:number):JSX.Element=>(
                         <div key={i} className="categ1">
                             {item}
                         </div>

@@ -1,5 +1,4 @@
 import { ChangeEvent } from "react"
-
 interface props {
     chan2:(e:ChangeEvent<HTMLInputElement>)=>void,
     chan1:(e:ChangeEvent<HTMLSelectElement>)=>void,
@@ -9,7 +8,10 @@ interface props {
     val1:string
 }
 export default function Head({chan2,chan1,chan,press,val,val1}:props):JSX.Element{
-const mass:string[]=['all','art','biography','computers','history','medical','poetry']
+const mass:string[]=[
+'all','art','biography','computers',
+ 'history','medical','poetry'
+]
 return <header>
           <div className="title">
             <h2>
