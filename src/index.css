@@ -71,6 +71,7 @@ select{
   column-gap: 20px;
 }
 .item{
+  margin: auto;
   width: 250px;
   min-height: 350px;
   background-color: rgb(224, 224, 224);
@@ -149,7 +150,6 @@ a{
   }
   .pageImg{
     width: 100%;
-    height: 390px;
   }
   .pageText{
     width: 100%;
