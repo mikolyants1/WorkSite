@@ -1,55 +1,57 @@
 import { ChangeEvent } from "react"
+import { Title,Search,Select,Sorted,Times,Text, Categories,Header } from "./Style"
+export type union=HTMLSelectElement|HTMLInputElement
 interface props {
-    chan2:(e:ChangeEvent<HTMLInputElement>)=>void,
-    chan1:(e:ChangeEvent<HTMLSelectElement>)=>void,
-    chan:(e:ChangeEvent<HTMLSelectElement>)=>void,
+    chan:(e:ChangeEvent<union>)=>void,
     press:()=>void,
-    val:string,
-    val1:string
+    cat:string,
+    old:string,
+    text:string
 }
-export default function Head({chan2,chan1,chan,press,val,val1}:props):JSX.Element{
+export default function Head(props:props):JSX.Element{
+const {chan,press,cat,old,text}:props=props
 const mass:string[]=[
 'all','art','biography','computers',
- 'history','medical','poetry'
+'history','medical','poetry'
 ]
-return <header>
-          <div className="title">
-            <h2>
-                Search for books
-            </h2>
-          </div>
-         <div className="inp">
-           <input type="text" onChange={chan2} /> 
-           <button className="ser" onClick={press}>
+return <Header>
+         <Title>
+           <h2>
+              Search for books
+           </h2>
+         </Title>
+         <Search>
+           <input type="text" name="text" value={text} onChange={chan} /> 
+           <button onClick={press}>
                search
-            </button>
-        </div>
-        <div className="sel">
-            <div className="cat">
-                <span>
-                    categories
-                </span>
-                <select  value={val} onChange={chan}>
-                {mass.map((item:string):JSX.Element=>{
-                return <option key={item} value={item}>
-                    {item}
-                 </option>
-                    })}
-                </select>
-            </div>
-            <div className="how">
-                <span>
-                    sorting by
-                </span>
-                <select  value={val1} onChange={chan1}>
-                    <option value="relevance">
-                        relevance
-                    </option>
-                    <option value="newest">
-                        newest
-                    </option>
-                </select>
-            </div>
-        </div>
-    </header>
+           </button>
+         </Search>
+         <Sorted>
+          <Categories>
+            <Text>
+              categories
+            </Text>
+            <Select value={cat} name="cat" onChange={chan}>
+                {mass.map((item:string):JSX.Element=>(
+                  <option key={item} value={item}>
+                     {item}
+                  </option>
+                ))}
+            </Select>
+          </Categories>
+          <Times>
+            <Text>
+              sorting by
+            </Text>
+            <Select value={old} name="old" onChange={chan}>
+              <option value="relevance">
+                 relevance
+              </option>
+              <option value="newest">
+                 newest
+              </option>
+            </Select>
+          </Times>
+        </Sorted>
+      </Header>
 }

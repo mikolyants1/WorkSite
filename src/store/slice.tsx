@@ -4,7 +4,7 @@ export type Book={
     show:number,
     text:string
 }
-type action={
+export type Action={
 setMass:ActionCreatorWithPayload<Array<any>,'books/setMass'>
 setShow:ActionCreatorWithPayload<number,'books/setShow'>
 setText:ActionCreatorWithPayload<string,'books/setText'>
@@ -33,5 +33,5 @@ setText:(state:Book,action:PayloadAction<string>)=>void
       }
     }
 })
-export const {setMass,setShow,setText}:action=slice.actions
+export const action:Action=slice.actions
 export default slice.reducer

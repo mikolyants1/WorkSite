@@ -1,50 +1,62 @@
 
-import { ChangeEvent, useState, } from "react"
-import { useAppDispatch,useAppSelector } from "../store/store"
-import { Dispatch,AnyAction } from "@reduxjs/toolkit"
-import { Book,setText as set } from "../store/slice"
+import { Action, Book} from "../store/slice"
+import axios from "axios"
+import { union } from "./Head"
+import { ChangeEvent,useState,useEffect,useCallback } from "react"
+import { useAppSelector } from "../store/store"
+import { useActions } from "../store/store"
 import Search from "./Search"
 import Head from "./Head"
 interface state {
-    val1:string,
-    val2:string
+    cat:string,
+    old:string,
+    text:string
 }
-interface state1 {
+interface state1{
     book:Book
 }
-export default function Home():JSX.Element{
-const ser:string=useAppSelector((store:state1)=>store.book.text)
-const dispatch:Dispatch<AnyAction>=useAppDispatch()
-const [value,setValue]=useState<state>({val1:'all',val2:''})
-const [value1,setValue1]=useState<state>({val1:'relevance',val2:''})
-const [text,setText]=useState<string>('')
-const change=(e:ChangeEvent<HTMLSelectElement>):void=>{
-setValue((prev:state):state=>({...prev,val1:e.target.value}))
+type Func=(state:state,con:number)=>void
+
+export default function Home():JSX.Element {
+const mass:Array<any>=useAppSelector((store:state1)=>store.book.mass)
+const show:number=useAppSelector((store:state1)=>store.book.show)
+const {setMass,setShow,setText}:Action=useActions()
+const [value,setValue]=useState<state>({cat:'all',old:'relevance',text:''})
+const [con,setCon]=useState<number>(10)
+const newPage=():void=>{
+setCon((prev:number):number=>prev+10)
 }
-const change1=(e:ChangeEvent<HTMLSelectElement>):void=>{
-setValue1((prev:state):state=>({...prev,val1:e.target.value}))
-    }
-const change2=(e:ChangeEvent<HTMLInputElement>):void=>{
-setText(e.target.value)
+useEffect(():void=>{Call(value,con)},[con])
+async function Promise(state:state,con:number):Promise<void>{
+const {text,cat,old}:state=state
+return await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${text}&${cat}+subject&orderBy=${old}&maxResults=${con}`)
+.then(({data}:any):void=>{
+setMass(data.items)
+setShow(data.totalItems)
+})
+}
+const Call:Func=useCallback((state:state,con:number):void=>{
+   Promise(state,con)
+},[value,con,Promise])
+const change=({target}:ChangeEvent<union>):void=>{
+setValue((prev:state):state=>({...prev,[target.name]:target.value}))
 }
 const press=():void=>{
-dispatch(set(text))
-setValue((prev:state):state=>({...prev,val2:value.val1}))
-setValue1((prev:state):state=>({...prev,val2:value1.val1}))
+setText(value.text)
+if (value.text!=='') Call(value,con)
 }
 return <div>
         <Head
-          chan2={change2}
-          chan1={change1}
           chan={change}
           press={press}
-          val1={value1.val1}
-          val={value.val1}
+          cat={value.cat}
+          old={value.old}
+          text={value.text}
          />
         <Search
-         text={ser}
-         cat={value.val2}
-         old={value1.val2}
+         mass={mass}
+         show={show}
+         next={newPage}
          />
      </div>
 }
