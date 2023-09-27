@@ -2,20 +2,38 @@ import styled from "styled-components";
 import { BaseObject,IStyledComponent } from "styled-components/dist/types";
 import { ChangeEvent } from "react";
 import { union } from "./Head";
-import img from '../assets/fon.jpg'
+type union2=JSX.Element|JSX.Element[]
 interface SelectProp {
     children:JSX.Element[],
     name:string,
     value:string,
     onChange:(e:ChangeEvent<union>)=>void,
 }
+interface HeadProp{
+  children:union2,
+  img:string
+}
+interface TextProp{
+  key?:number,
+  children:string
+}
+interface LoadProp{
+  onClick:()=>void,
+  children:string
+}
+interface ImgProp{
+  alt:string,
+  src:string
+}
+interface ItemProp{
+  children:JSX.Element,
+  key:number
+}
 export const Title:IStyledComponent<'web',BaseObject>=styled.div`
 width: 100%;
 text-align: center;
-
-& h2 {
 font-size: 34px;
- }
+font-weight:bolder;
 `
 export const Search:IStyledComponent<'web',BaseObject>=styled.div`
 width: 450px;
@@ -24,7 +42,7 @@ margin: auto;
 display: flex;
 justify-content: center;
 align-items: center;
-
+text-align:center;
 & input{
 height: 100%;
 width: 85%;
@@ -37,10 +55,11 @@ width: 70px;
 width: 90%;
   }
 `
-export const Header:IStyledComponent<'web',BaseObject>=styled.header`
+export const Header:IStyledComponent<'web',HeadProp>=styled.header`
 width: 100%;
 height: 200px;
-background: url(${img}) no-repeat;
+text-align:center;
+background: url(${({img}:HeadProp)=>img}) no-repeat;
 background-size: 100% 100%;
 @media (max-width:280px) {
       height: 240px;
@@ -101,7 +120,7 @@ export const Text:IStyledComponent<'web',BaseObject>=styled.span`
         width: 40%;
         height: 100%;
         background-color: rgb(235, 234, 234);
-
+         text-align:center;
         & img {
         width: 250px;
         margin: 40px auto;
@@ -111,6 +130,13 @@ export const Text:IStyledComponent<'web',BaseObject>=styled.span`
               width: 100%; 
           }
       `
+  export const Load:IStyledComponent<'web',LoadProp>=styled.div`
+  width:100%;
+  text-align:center;
+  `
+  export const TextItem:IStyledComponent<'web',TextProp>=styled.div`
+  text-align:center;
+  `
   export const PageText:IStyledComponent<'web',BaseObject>=styled.div`
         width: 60%;
         height: 100%;
@@ -166,26 +192,20 @@ export const Text:IStyledComponent<'web',BaseObject>=styled.span`
               display: block;
           }
       `
-      interface ItemProp{
-        children:JSX.Element,
-        key:number
-      }
     export const Item:IStyledComponent<'web',ItemProp>=styled.div`
         margin: auto;
+        text-align:center;
         width: 250px;
         min-height: 350px;
         background-color: rgb(224, 224, 224);
         @media (max-width:550px) {
-              margin:20px auto 20px auto;
+          margin:20px auto 20px auto;
           }
       `
    export const Result:IStyledComponent<'web',BaseObject>=styled.div`
         margin-top: 10px;
+        text-align:center
       `
-      interface ImgProp{
-        alt:string,
-        src:string
-      }
      export const Img:IStyledComponent<'web',ImgProp>=styled.img`
         margin:10px auto;
         box-shadow: 4px 2px 4px 2px black;

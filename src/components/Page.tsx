@@ -2,7 +2,8 @@ import { Params, useParams } from "react-router-dom"
 import { useGetBookByIdQuery ,union1} from "../store/Api"
 import { UseQueryHookResult} from "@reduxjs/toolkit/dist/query/react/buildHooks"
 import { BaseQueryFn, FetchBaseQueryError,FetchBaseQueryMeta,QueryDefinition } from "@reduxjs/toolkit/dist/query"
-import { Header, Title,MainPage,PageAuthor,PageCat,PageImg,PageText,PageTitle } from "./Style"
+import { Header, Title,MainPage,PageAuthor,PageCat,PageImg,PageText,PageTitle,TextItem } from "./Style"
+import img from '../assets/fon.jpg'
 export type union=string|undefined
 type query=UseQueryHookResult<QueryDefinition<union,BaseQueryFn<union1,
 unknown,FetchBaseQueryError,{},FetchBaseQueryMeta>,never,any,"Books">>
@@ -13,12 +14,10 @@ export default function Page():JSX.Element{
    if (isLoading) return <div>...</div>
    if (isError) return <div>error</div>
    const {imageLinks,categories,authors,description,title}:any=data.volumeInfo
-    return <div>
-             <Header>
+    return <>
+             <Header img={img}>
                <Title>
-                 <h2>
-                   Search for books
-                 </h2>
+                  Search for books
                </Title>
              </Header>
              <MainPage>
@@ -28,9 +27,9 @@ export default function Page():JSX.Element{
                <PageText>
                  <PageCat>
                     {!categories?'':categories.map((item:string,i:number):JSX.Element=>(
-                        <div key={i}>
+                        <TextItem key={i}>
                            {item}
-                        </div>
+                        </TextItem>
                       ))}
                  </PageCat>
                  <PageTitle>
@@ -40,15 +39,15 @@ export default function Page():JSX.Element{
                  </PageTitle>
                  <PageAuthor>
                     {!authors?'':authors.map((item:string,i:number):JSX.Element=>(
-                      <div key={i}>
+                      <TextItem key={i}>
                          {item}
-                      </div>
+                      </TextItem>
                       ))}
                  </PageAuthor>
-                 <div>
+                 <TextItem>
                     {!description?'':description}
-                 </div>
+                 </TextItem>
                </PageText>
              </MainPage>
-           </div>
+           </>
   }

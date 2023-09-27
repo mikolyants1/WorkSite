@@ -1,5 +1,6 @@
 import { ChangeEvent } from "react"
 import { Title,Search,Select,Sorted,Times,Text, Categories,Header } from "./Style"
+import img from '../assets/fon.jpg'
 export type union=HTMLSelectElement|HTMLInputElement
 interface props {
     chan:(e:ChangeEvent<union>)=>void,
@@ -14,14 +15,14 @@ const mass:string[]=[
 'all','art','biography','computers',
 'history','medical','poetry'
 ]
-return <Header>
+return <Header img={img}>
          <Title>
-           <h2>
-              Search for books
-           </h2>
+            Search for books
          </Title>
          <Search>
-           <input type="text" name="text" value={text} onChange={chan} /> 
+           <input type="text" name="text"
+            value={text} onChange={chan}
+            /> 
            <button onClick={press}>
                search
            </button>
