@@ -34,7 +34,7 @@ return await axios.get(`${BaseUrl}?q=${text}&${cat}+subject&orderBy=${old}&maxRe
 .then(({data}:any):void=>{
 setMass(data.items)
 setShow(data.totalItems)
-})
+  })
 }
 const Call:Func=useCallback((state:state,con:number):void=>{
    Promise(state,con)
@@ -48,11 +48,11 @@ if (value.text!=='') Call(value,con)
 }
 return <>
         <Head
-          chan={change}
-          press={press}
-          cat={value.cat}
-          old={value.old}
-          text={value.text}
+         chan={change}
+         press={press}
+         cat={value.cat}
+         old={value.old}
+         text={value.text}
          />
         <Search
          mass={mass}

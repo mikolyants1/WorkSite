@@ -6,6 +6,7 @@ import { persistStore, persistReducer, Persistor, WebStorage } from 'redux-persi
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore'
 import { PersistPartial } from 'redux-persist/lib/persistReducer'
 import { BookApi } from "./Api"
+import { setupListeners } from "@reduxjs/toolkit/dist/query"
 interface state{
     key:string,
     storage:WebStorage
@@ -31,5 +32,6 @@ const store:ToolkitStore=configureStore({
     middleware:(getDefaultMiddleware:any)=>
     getDefaultMiddleware().concat(BookApi.middleware)
 })
+setupListeners(store.dispatch)
 export const cachedStore:Persistor=persistStore(store)
 export default store

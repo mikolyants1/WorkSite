@@ -10,7 +10,7 @@ interface props {
     text:string
 }
 export default function Head(props:props):JSX.Element{
-const {chan,press,cat,old,text}:props=props
+  const {chan,press,cat,old,text}:props=props
 const mass:string[]=[
 'all','art','biography','computers',
 'history','medical','poetry'
@@ -21,10 +21,10 @@ return <Header img={img}>
          </Title>
          <Search>
            <input type="text" name="text"
-            value={text} onChange={chan}
+            value={text}  onChange={chan}
             /> 
            <button onClick={press}>
-               search
+             search
            </button>
          </Search>
          <Sorted>

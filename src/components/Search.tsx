@@ -9,7 +9,7 @@ interface props {
 type union=JSX.Element|null
 export default function Search({mass,show,next}:props):union{
 if (mass.length!==0){
-return <>
+ return <>
          <Result>
             found {show} results
          </Result>
@@ -38,12 +38,12 @@ return <>
                         </Authors>
                       </Link>
                     </Item>
-                    })}
-                 </Main>
-                 <Load onClick={next}>
-                    load more
-                 </Load>
-               </>
+              })}
+          </Main>
+          <Load onClick={next}>
+              load more
+          </Load>
+        </>
     }
     return null
 }

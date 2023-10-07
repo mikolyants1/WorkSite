@@ -9,7 +9,7 @@ export const BaseUrl:string='https://www.googleapis.com/books/v1/volumes'
 export type union1=string|FetchArgs
 export type union2=typeof coreModuleName | typeof reactHooksModuleName
 
-export type builder=EndpointBuilder<BaseQueryFn<union1,unknown,
+export type build=EndpointBuilder<BaseQueryFn<union1,unknown,
 FetchBaseQueryError,{},FetchBaseQueryMeta>,never,"Books">
 
 type queryFunc1=QueryDefinition<union,BaseQueryFn<union1,unknown,
@@ -23,10 +23,10 @@ export const BookApi:ApiType=createApi({
     baseQuery:fetchBaseQuery({
       baseUrl:`${BaseUrl}`
     }),
-    endpoints:(build:builder)=>({
-        getBookById:build.query<any,union>({
-         query:(id:string):string=>`/${id}`
-        })
+    endpoints:(builder:build)=>({
+      getBookById:builder.query<any,union>({
+        query:(id:string):string=>`/${id}`
+      })
     })
 })
 export const {useGetBookByIdQuery}:ApiType=BookApi

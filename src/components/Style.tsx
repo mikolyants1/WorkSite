@@ -1,5 +1,4 @@
-import styled from "styled-components";
-import { BaseObject,IStyledComponent } from "styled-components/dist/types";
+import styled from "@emotion/styled";
 import { ChangeEvent } from "react";
 import { union } from "./Head";
 type union2=JSX.Element|JSX.Element[]
@@ -29,13 +28,13 @@ interface ItemProp{
   children:JSX.Element,
   key:number
 }
-export const Title:IStyledComponent<'web',BaseObject>=styled.div`
+export const Title=styled.div`
 width: 100%;
 text-align: center;
 font-size: 34px;
 font-weight:bolder;
 `
-export const Search:IStyledComponent<'web',BaseObject>=styled.div`
+export const Search=styled.div`
 width: 450px;
 height: 20px;
 margin: auto;
@@ -55,7 +54,7 @@ width: 70px;
 width: 90%;
   }
 `
-export const Header:IStyledComponent<'web',HeadProp>=styled.header`
+export const Header=styled.header<HeadProp>`
 width: 100%;
 height: 200px;
 text-align:center;
@@ -65,7 +64,7 @@ background-size: 100% 100%;
       height: 240px;
   }
 `
-export const Sorted:IStyledComponent<'web',BaseObject>=styled.div`
+export const Sorted=styled.div`
     height: 30px;
     margin:10px auto;
     width: 480px;
@@ -78,7 +77,7 @@ export const Sorted:IStyledComponent<'web',BaseObject>=styled.div`
       }
   `
 
-export const Categories:IStyledComponent<'web',BaseObject>=styled.div`
+export const Categories=styled.div`
     height: 100%;
     width: 50%;
     @media (max-width:550px) {
@@ -86,7 +85,7 @@ export const Categories:IStyledComponent<'web',BaseObject>=styled.div`
     margin: 10px auto 10px auto;
       }
     `
- export const Times:IStyledComponent<'web',BaseObject>=styled.div`
+ export const Times=styled.div`
     display: flex;
     justify-content: end;
     height: 100%;
@@ -98,17 +97,17 @@ export const Categories:IStyledComponent<'web',BaseObject>=styled.div`
 
       }
     `
-export const Text:IStyledComponent<'web',BaseObject>=styled.span`
+export const Text=styled.span<TextProp>`
       font-size: 18px;
       font-weight: bolder;
     }
     `
- export const Select:IStyledComponent<'web',SelectProp>=styled.select`
+ export const Select=styled.select<SelectProp>`
       width: 140px;
       height: 100%;
     `
 
-  export const MainPage:IStyledComponent<'web',BaseObject>=styled.div`
+  export const MainPage=styled.div`
         width: 100%;
         height: 500px;
         display: flex;
@@ -116,7 +115,7 @@ export const Text:IStyledComponent<'web',BaseObject>=styled.span`
             display: block;
           }
       `
-   export const PageImg:IStyledComponent<'web',BaseObject>=styled.div`
+   export const PageImg=styled.div`
         width: 40%;
         height: 100%;
         background-color: rgb(235, 234, 234);
@@ -130,21 +129,21 @@ export const Text:IStyledComponent<'web',BaseObject>=styled.span`
               width: 100%; 
           }
       `
-  export const Load:IStyledComponent<'web',LoadProp>=styled.div`
+  export const Load=styled.div<LoadProp>`
   width:100%;
   text-align:center;
   `
-  export const TextItem:IStyledComponent<'web',TextProp>=styled.div`
+  export const TextItem=styled.div`
   text-align:center;
   `
-  export const PageText:IStyledComponent<'web',BaseObject>=styled.div`
+  export const PageText=styled.div`
         width: 60%;
         height: 100%;
         @media (max-width:800px) {
               width: 100%;
           }
       `
-   export const PageCat:IStyledComponent<'web',BaseObject>=styled.div`
+   export const PageCat=styled.div`
         width: 90%;
         margin: 10px auto;
         font-size: 14px;
@@ -156,12 +155,12 @@ export const Text:IStyledComponent<'web',BaseObject>=styled.span`
          align-items: start;
         }
       `
-    export const PageTitle:IStyledComponent<'web',BaseObject>=styled.div`
+    export const PageTitle=styled.div`
         width: 90%;
         text-align: center;
         margin: auto;
       `
-    export const PageAuthor:IStyledComponent<'web',BaseObject>=styled.div`
+    export const PageAuthor=styled.div`
         width: 90%;
         font-size: 14px;
         text-decoration: underline;
@@ -173,7 +172,7 @@ export const Text:IStyledComponent<'web',BaseObject>=styled.span`
         width: 200px;
       }
       `
-   export  const Category:IStyledComponent<'web',BaseObject>=styled.div`
+   export  const Category=styled.div`
         color: grey;
         text-decoration: underline;
         & div {
@@ -181,7 +180,7 @@ export const Text:IStyledComponent<'web',BaseObject>=styled.span`
         }
       `
       
-   export const Main:IStyledComponent<'web',BaseObject>=styled.div`
+   export const Main=styled.div`
         margin-top: 20px;
         width: 100%;
         display: grid;
@@ -192,7 +191,7 @@ export const Text:IStyledComponent<'web',BaseObject>=styled.span`
               display: block;
           }
       `
-    export const Item:IStyledComponent<'web',ItemProp>=styled.div`
+    export const Item=styled.div<ItemProp>`
         margin: auto;
         text-align:center;
         width: 250px;
@@ -202,18 +201,18 @@ export const Text:IStyledComponent<'web',BaseObject>=styled.span`
           margin:20px auto 20px auto;
           }
       `
-   export const Result:IStyledComponent<'web',BaseObject>=styled.div`
+   export const Result=styled.div`
         margin-top: 10px;
         text-align:center
       `
-     export const Img:IStyledComponent<'web',ImgProp>=styled.img`
+     export const Img=styled.img<ImgProp>`
         margin:10px auto;
         box-shadow: 4px 2px 4px 2px black;
       `
-    export const Name:IStyledComponent<'web',BaseObject>=styled.div`
+    export const Name=styled.div`
         font-weight: bold;
       `
-    export const Authors:IStyledComponent<'web',BaseObject>=styled.div`
+    export const Authors=styled.div`
         color: grey;
         width: 100%;
         display: grid;
