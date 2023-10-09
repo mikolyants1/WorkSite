@@ -1,6 +1,6 @@
 
 import { Action, Book} from "../store/slice"
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
 import { union } from "./Head"
 import { ChangeEvent,useState,useEffect,useCallback } from "react"
 import { useAppSelector } from "../store/store"
@@ -13,15 +13,19 @@ interface state {
     old:string,
     text:string
 }
-interface state1{
-    book:Book
+interface state1<T>{
+    book:Book<T>
+}
+interface datas<T>{
+ items:T,
+ totalItems:number,
 }
 type Func=(state:state,con:number)=>void
 
-export default function Home():JSX.Element {
-const mass:Array<any>=useAppSelector((store:state1)=>store.book.mass)
-const show:number=useAppSelector((store:state1)=>store.book.show)
-const {setMass,setShow,setText}:Action=useActions()
+export default function Home<T extends []>():JSX.Element {
+const mass:T=useAppSelector((store:state1<T>)=>store.book.mass)
+const show:number=useAppSelector((store:state1<number>)=>store.book.show)
+const {setMass,setShow,setText}:Action<[]>=useActions()
 const [value,setValue]=useState<state>({cat:'all',old:'relevance',text:''})
 const [con,setCon]=useState<number>(10)
 const newPage=():void=>{
@@ -31,7 +35,7 @@ useEffect(():void=>Call(value,con),[con])
 async function Promise(state:state,con:number):Promise<void>{
 const {text,cat,old}:state=state
 return await axios.get(`${BaseUrl}?q=${text}&${cat}+subject&orderBy=${old}&maxResults=${con}`)
-.then(({data}:any):void=>{
+.then(({data}:AxiosResponse<datas<T>>):void=>{
 setMass(data.items)
 setShow(data.totalItems)
   })

@@ -19,7 +19,10 @@ type RootState = ReturnType<typeof store.getState>
 type AppDispatch = typeof store.dispatch
 export const useAppDispatch: () => AppDispatch = useDispatch
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
-export const useActions=():Action=>bindActionCreators(action,useAppDispatch())
+export function useActions():Action<[]>{
+return bindActionCreators(action,useAppDispatch())
+}
+
 const combine:Reducer=combineReducers({
     book:slice,
     [BookApi.reducerPath]:BookApi.reducer,

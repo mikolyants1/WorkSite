@@ -54,7 +54,7 @@ width: 70px;
 width: 90%;
   }
 `
-export const Header=styled.header<HeadProp>`
+export const Header=styled.div<HeadProp>`
 width: 100%;
 height: 200px;
 text-align:center;

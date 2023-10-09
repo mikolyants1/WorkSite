@@ -7,13 +7,22 @@ import img from '../assets/fon.jpg'
 export type union=string|undefined
 type query=UseQueryHookResult<QueryDefinition<union,BaseQueryFn<union1,
 unknown,FetchBaseQueryError,{},FetchBaseQueryMeta>,never,any,"Books">>
-
+interface image{
+ smallThumbnail:string
+}
+interface data<T>{
+  imageLinks:image,
+  categories:T,
+  authors:T,
+  description:T,
+  title:string
+}
 export default function Page():JSX.Element{
   const {id}:Readonly<Params<string>>=useParams<string>()
   const {data,isLoading,isError}=useGetBookByIdQuery<query>(id)
   if (isLoading) return <div>...</div>
   if (isError) return <div>error</div>
-  const {imageLinks,categories,authors,description,title}:any=data.volumeInfo
+  const {imageLinks,categories,authors,description,title}:data<[]>=data.volumeInfo
     return <>
              <Header img={img}>
                <Title>
@@ -26,11 +35,11 @@ export default function Page():JSX.Element{
                </PageImg>
                <PageText>
                  <PageCat>
-                    {!categories?'':categories.map((item:string,i:number):JSX.Element=>(
-                     <TextItem key={i}>
-                       {item}
-                     </TextItem>
-                    ))}
+                  {!categories?'':categories.map((item:string,i:number):JSX.Element=>(
+                    <TextItem key={i}>
+                      {item}
+                    </TextItem>
+                  ))}
                  </PageCat>
                  <PageTitle>
                    <h3>

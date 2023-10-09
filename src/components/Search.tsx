@@ -1,21 +1,35 @@
 
 import { Link } from "react-router-dom"
 import { Main,Result,Item,Img,Name,Authors,Category,TextItem,Load } from "./Style" 
-interface props {
-    mass:Array<any>,
+interface props<T> {
+    mass:T,
     show:number,
     next:()=>void,
 }
+interface image{
+  smallThumbnail:string
+ }
+ interface data<T>{
+   imageLinks:image,
+   categories:T,
+   authors:T,
+   description:T,
+   title:string
+ }
+ interface elem{
+  volumeInfo:data<[]>
+  id:string
+ }
 type union=JSX.Element|null
-export default function Search({mass,show,next}:props):union{
+export default function Search({mass,show,next}:props<[]>):union{
 if (mass.length!==0){
  return <>
          <Result>
             found {show} results
          </Result>
          <Main>
-           {mass.map((item:any,i:number):JSX.Element=>{
-            const {imageLinks,categories,title,authors}:any=item.volumeInfo
+           {mass.map((item:elem,i:number):JSX.Element=>{
+            const {imageLinks,categories,title,authors}:data<[]>=item.volumeInfo
              return <Item key={i}>
                       <Link to={`/${item.id}`}>
                         <Img alt="" src={!imageLinks.smallThumbnail?'':imageLinks.smallThumbnail} />
