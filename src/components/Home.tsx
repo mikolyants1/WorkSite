@@ -11,9 +11,9 @@ import Head from "./Head"
 interface state {
     cat:string,
     old:string,
-    text:string
+    text:string,
 }
-interface state1<T>{
+export interface state1<T>{
     book:Book<T>
 }
 interface datas<T>{
@@ -50,7 +50,8 @@ const press=():void=>{
 setText(value.text)
 if (value.text!=='') Call(value,con)
 }
-return <>
+return (
+    <>
         <Head
          chan={change}
          press={press}
@@ -63,5 +64,6 @@ return <>
          show={show}
          next={newPage}
          />
-     </>
+      </>
+     )
 }

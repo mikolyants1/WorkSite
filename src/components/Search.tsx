@@ -1,6 +1,10 @@
 
 import { Link } from "react-router-dom"
-import { Main,Result,Item,Img,Name,Authors,Category,TextItem,Load } from "./Style" 
+import img from '../assets/No_Cover.jpg'
+import {useContext} from 'react'
+import { Main,Result,Item,Img,Name,Authors,Category,TextItem,Load ,List} from "./Style" 
+import { Context } from "../App"
+import { context } from "../store/slice"
 interface props<T> {
     mass:T,
     show:number,
@@ -21,43 +25,52 @@ interface image{
   id:string
  }
 type union=JSX.Element|null
+
 export default function Search({mass,show,next}:props<[]>):union{
 if (mass.length!==0){
- return <>
+const {back}:context=useContext(Context)
+ return (
+       <List back={back}>
          <Result>
             found {show} results
          </Result>
          <Main>
-           {mass.map((item:elem,i:number):JSX.Element=>{
+          {mass.map((item:elem,i:number):JSX.Element=>{
             const {imageLinks,categories,title,authors}:data<[]>=item.volumeInfo
-             return <Item key={i}>
-                      <Link to={`/${item.id}`}>
-                        <Img alt="" src={!imageLinks.smallThumbnail?'':imageLinks.smallThumbnail} />
-                        <Category>
-                          {!categories?'':categories.map((item:string,i:number):JSX.Element=>(
-                            <TextItem key={i}>
-                                {item}
-                            </TextItem>
-                            ))}
-                        </Category>
-                        <Name>
-                          {title}
-                        </Name>
-                        <Authors>
-                          {!authors?'':authors.map((item:string,i:number):JSX.Element=>(
-                            <TextItem key={i}>
-                                {item}
-                            </TextItem>
-                           ))}
-                        </Authors>
-                      </Link>
-                    </Item>
-              })}
+             return (
+              <Item key={i} i={i*0.3}>
+                <Link to={`/${item.id}`}>
+                  <Img alt="" src={!imageLinks?img:imageLinks.smallThumbnail} />
+                  <Category>
+                   {!categories?'':categories.map((item:string,i:number):JSX.Element=>(
+                    <TextItem key={i}>
+                      {item}
+                    </TextItem>
+                    ))}
+                  </Category>
+                  <Name>
+                    {title}
+                  </Name>
+                  <Authors>
+                   {!authors?'':authors.map((item:string,i:number):JSX.Element=>(
+                    <>
+                     {i<4?(
+                      <TextItem key={i}>
+                         {item}
+                      </TextItem>
+                      ):null}
+                    </>      
+                   ))}
+                  </Authors>
+                </Link>
+              </Item>
+              )})}
           </Main>
           <Load onClick={next}>
               load more
           </Load>
-        </>
+        </List>
+        )
     }
     return null
 }
