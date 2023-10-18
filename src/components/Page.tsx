@@ -46,7 +46,7 @@ export default function Page():JSX.Element{
                    Page Book
                </PageName>
                <Back>
-                  <Theme />
+                 <Theme />
                </Back>
              </PageHeader>
              <MainPage back={back}>
@@ -61,7 +61,7 @@ export default function Page():JSX.Element{
                    </TextItem>
                    ))}
                  </PageCat>
-                 <PageTitle>
+                 <PageTitle back={back}>
                    <h3>
                      {title}
                    </h3>

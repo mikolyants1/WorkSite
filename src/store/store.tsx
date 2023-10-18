@@ -7,6 +7,7 @@ import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore'
 import { PersistPartial } from 'redux-persist/lib/persistReducer'
 import { BookApi } from "./Api"
 import { setupListeners } from "@reduxjs/toolkit/dist/query"
+import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware"
 interface state{
     key:string,
     storage:WebStorage
@@ -22,7 +23,6 @@ export const useAppSelector:TypedUseSelectorHook<RootState> = useSelector
 export function useActions():Action<[]>{
 return bindActionCreators(action,useAppDispatch())
 }
-
 const combine:Reducer=combineReducers({
     book:slice,
     [BookApi.reducerPath]:BookApi.reducer,
@@ -32,7 +32,7 @@ PersistPartial,AnyAction>=persistReducer(config,combine)
 
 const store:ToolkitStore=configureStore({
     reducer:persist,
-    middleware:(getDefaultMiddleware:any)=>
+    middleware:(getDefaultMiddleware:CurriedGetDefaultMiddleware)=>
     getDefaultMiddleware().concat(BookApi.middleware)
 })
 setupListeners(store.dispatch)

@@ -10,7 +10,7 @@ interface SelectProp {
     onChange:(e:ChangeEvent<union>)=>void,
 }
 interface HeadProp{
-  children:union2,
+  children:union2|string,
   back?:string
 }
 interface TextProp{
@@ -27,7 +27,8 @@ interface ImgProp{
 }
 interface ItemProp{
   children:JSX.Element,
-  key:number,
+  key:string,
+  back:string
   i:number
 }
 interface ToogleProp{
@@ -199,10 +200,10 @@ export const Text=styled.span<TextProp>`
         border:1px solid black;
         border-radius:20px;
         overflow:hidden;
-        background-color:${({back}:HeadProp)=>(
-          back=='black'?'white':'black'
-        )};
-        color:${({back}:HeadProp)=>back};
+        background:linear-gradient(70deg,${({back}:HeadProp)=>(
+          back=='black'?'#808080,#D0D0D0':'#000000,#808080'
+          )});
+          color:${({back}:HeadProp)=>back};
         width: 75%;
         min-height: 400px;
         display: flex;
@@ -218,7 +219,7 @@ export const Text=styled.span<TextProp>`
         & img {
         width: 250px;
         margin: 40px auto;
-        box-shadow: 4px 2px 4px 2px ${({back}:HeadProp)=>back};
+        box-shadow: 4px 2px 4px 2px black;
         }
         @media (max-width:1100px) {
           width: 100%; 
@@ -233,7 +234,7 @@ export const Text=styled.span<TextProp>`
   width:100%;
   text-align:center;
   `
-  export const TextItem=styled.div`
+  export const TextItem=styled.div<HeadProp>`
   text-align:center;
   `
   export const PageText=styled.div`
@@ -255,10 +256,15 @@ export const Text=styled.span<TextProp>`
          align-items: start;
         }
       `
-    export const PageTitle=styled.div`
+    export const PageTitle=styled.div<WrapProp>`
         width: 90%;
         text-align: center;
         margin: auto;
+        background-clip:text;
+        color:transparent;
+        background-image:linear-gradient(${({back}:WrapProp)=>(
+         back!=='black'?'#808080,#D0D0D0':'#000000,#808080'
+           )});
       `
     export const PageAuthor=styled.div`
         width: 90%;
@@ -272,7 +278,7 @@ export const Text=styled.span<TextProp>`
         width: 200px;
       }
       `
-   export  const Category=styled.div`
+   export const Category=styled.div`
         color: grey;
         text-decoration: underline;
         & div {
@@ -302,9 +308,11 @@ export const Text=styled.span<TextProp>`
         animation-timing-function: ease;
         animation-fill-mode: forwards;
         animation-delay:${({i}:ItemProp)=>i}s;
-        background-color: rgb(224, 224, 224);
+        background:linear-gradient(70deg,${({back}:HeadProp)=>(
+          back=='black'?'#808080,#D0D0D0':'#000000,#808080'
+          )});
         border-radius:20px;
-        border:1px solid black;
+        border:1px solid ${({back}:HeadProp)=>back};
         @media (max-width:550px) {
           margin:20px auto 20px auto;
           }
@@ -319,11 +327,12 @@ export const Text=styled.span<TextProp>`
         width:60%;
         height:190px
       `
-    export const Name=styled.div`
+    export const Name=styled.div<HeadProp>`
         font-weight: bold;
+        color:${({back}:HeadProp)=>back};
       `
     export const Authors=styled.div`
-        color: grey;
+        color: rgb(100,100,100);
         width: 100%;
         display: grid;
         grid-template-columns: repeat(auto-fill,minmax(200px,1fr));

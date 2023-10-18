@@ -13,7 +13,7 @@ const Main:FC=():JSX.Element=>{
   const back:string=useAppSelector((store:state1<[]>)=>store.book.back)
   const {setColor}:Action<[]>=useActions()
   const change=()=>{
-  setColor(back=='black'?'white':'black')
+   setColor(back=='black'?'white':'black')
   }
   return (
     <Context.Provider value={{back:back,chan:change}}>
